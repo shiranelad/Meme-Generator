@@ -7,35 +7,56 @@
     <link rel="stylesheet" href="css/style.css" />
     <title>Shiran Elad - Meme Generator</title>
   </head>
-  <body>
+  <body onload="init()">
     <!-- Header  -->
     <header class="main-header flex space-between">
       <img src="assets/logo.png" alt="" class="logo" />
       <ul class="nav-links flex align-center justify-center clean-list">
-        <li><span class="gallery">Gallery</span></li>
+        <li ><a href='#' class="gallery clean-a item" onclick="renderGallery()">Gallery</a></li>
         <li><span class="separator">|</span></li>
-        <li><span class="about">About</span></li>
+        <li><a href='#' class="about clean-a item">About</a></li>
       </ul>
     </header>
 
     <!-- Main Content -->
     <div class="main-content-container main-content">
+      <input type="search" class="search-bar" onkeydown="setFilter(this.value)" placeholder="Search memes by category..."/>
       <div class="gallery-container">
-        <div class="search-bar"></div>
-        <div class="gallery"></div>
       </div>
-      <div class="editor-container">
-        <div class="canvas-container">
-          <canvas class="meme-canvas" width="700px" height="700px"></canvas>
-        </div>
-        <div class="editor"></div>
-      </div>
+        <div class="editor-container flex" style="display:none"> 
+          <div class="canvas-container">
+            <canvas class="meme-canvas" width="700px" height="700px" ></canvas>
+          </div>
+          <div class="control-box">
+            <input type="text" name="text-line1" placeholder="Enter text">
+            <button class="btn move-down">Move Down</button>
+            <button class="btn move-up">Move Up</button>
+            <button class="btn switch-lines">Switch Lines</button>
+            <button class="btn add-line">Add</button>
+            <button class="btn del-line">Delete</button>
+            <button class="btn increase-text">Increase Text</button>
+            <button class="btn decrease-text">Decrease Text</button>
+            <button class="btn align-left">Align Left</button>
+            <button class="btn align-center">Align Center</button>
+            <button class="btn align-right">Align Right</button>
+            <select class="choose-font">
+              <option value="1">IMPACT</option>
+              <option value="2">ARIAL</option>
+              <option value="3">TAHOMA</option>
+            </select>
+            <button class="stroke">Stroke</button>
+            <input type="color" class="choose-color" />
+          </div>
+        </div> 
+        <footer class="footer flex flex-column align-center justify-center">
+          <img src="assets/logo.png" alt="" class="logo" />
+          <small class="footer-text">&copy; Shiran Elad 2022</small>
+        </footer>
     </div>
-
     <!-- Footer -->
-    <footer class="footer flex flex-column align-center justify-center">
-      <img src="assets/logo.png" alt="" class="logo" />
-      <small class="footer-text">&copy; Shiran Elad 2022</small>
-    </footer>
+    <script src="js/meme-controller.js"></script>
+    <script src="js/gallery-services.js"></script>
+    <script src="js/gallery-controller.js"></script>
+    <script src="js/meme-services.js"></script>
   </body>
 </html>

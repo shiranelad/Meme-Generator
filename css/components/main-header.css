@@ -16,12 +16,12 @@
 }
 
 .main-header .nav-links :not(.seperator){
-    /* padding: 6px */
 }
 
 .main-header .nav-links > * :not(.separator):hover {
     color: var(--clr3);
-    border-bottom: var(--clr3) 1px solid;
+    /* border-bottom: var(--clr3) 1px solid; */
+    cursor: pointer;
 }
 
 .main-header .separator {
