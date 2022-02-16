@@ -1,0 +1,30 @@
+.main-header {
+    background-color: var(--clr1);
+    width: 100vw;
+    height:5.5%;
+}
+
+.main-header .logo {
+    margin: 12px auto 10px 24.5px;
+}
+
+.main-header .nav-links {
+    color: var(--clr2);
+    font-family: 'Mont 400';
+    margin: 8.5px 25px 1.7px 4.8px;
+    font-size: 1.5rem;
+}
+
+.main-header .nav-links :not(.seperator){
+    /* padding: 6px */
+}
+
+.main-header .nav-links > * :not(.separator):hover {
+    color: var(--clr3);
+    border-bottom: var(--clr3) 1px solid;
+}
+
+.main-header .separator {
+    color: var(--clr4);
+    margin: 0px 4.8px 6.8px 4.5px;
+}

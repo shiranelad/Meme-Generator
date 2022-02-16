@@ -1,0 +1,14 @@
+/* SETUP */
+@import 'setup/vars.css';
+@import 'setup/typography.css';
+
+/* BASIC */
+@import 'basic/helpers.css';
+@import 'basic/base.css';
+@import 'basic/layout.css';
+
+/* COMPONENTS */
+@import 'components/main-header.css';
+@import 'components/main-content.css';
+@import 'components/footer.css';
+
