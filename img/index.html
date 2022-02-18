@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Shiran Elad - Meme Generator</title>
+  </head>
+  <body onload="init()">
+    <!-- Header  -->
+    <header class="main-header flex space-between align-center ">
+      <img src="assets/logo.png" alt="" class="logo main-layout" />
+      <ul class="nav-bar flex align-center justify-center clean-list main-layout">
+        <li ><a href='#' class="gallery clean-a nav-link" onclick="renderGallery()">Gallery</a></li>
+        <li><span class="separator">|</span></li>
+        <li><a href='#' class="about clean-a nav-link">About</a></li>
+      </ul>
+    </header>
+
+    <!-- Main Content -->
+    <div class="main-content-container main-content">
+      <input list="categories" name="category" id="category" class="main-layout search-bar" onkeyup="setFilter(this.value)" placeholder="Search memes by category..." />
+      <datalist id="categories"></datalist>
+
+      <div class="gallery-container">
+      </div>
+      <div class="editor-container flex" > 
+        <div class="canvas-container" ">
+          <canvas class="meme-canvas" width="600px" height="600px" ></canvas>
+        </div>
+        <div class="control-box">
+          <input type="text" name="text-line" placeholder="Enter text here" onkeyup="onChangeText()">
+          
+          <button class="btn move-down" onclick="onMoveDown()">Move Down</button>
+          <button class="btn move-up" onclick="onMoveUp()">Move Up</button>
+          <button class="btn switch-lines" onclick="onSwitchLine()">Switch Lines</button>
+          <button class="btn add-line" onclick="onAddLine()">Add</button>
+          <button class="btn del-line" onclick="onDelete()">Delete</button>
+          <button class="btn increase-text" onclick="onIncrease()">Increase Text</button>
+          <button class="btn decrease-text" onclick="onDecrease()">Decrease Text</button>
+          <button class="btn align-left" onclick="onAlignText('left')">Align Left</button>
+          <button class="btn align-center" onclick="onAlignText('center')">Align Center</button>
+          <button class="btn align-right" onclick="onAlignText('right')">Align Right</button>
+          <select class="choose-font" onchange="onChangeFont(this.value)">
+            <option value="Impact">Impact</option>
+            <option value="Arial">Arial</option>
+            <option value="Tahoma">Tahoma</option>
+            <option value="Comic Sans">Comic Sans</option>
+            <option value="Consolas">Consolas</option>
+          </select>
+          <label for="color">Text Color</label>
+          <input type="color" id="color" class="text-color" value='#ffffff' onchange="onSetTextColor(this.value)"/>
+          <label for="stroke">Stroke Color</label>
+          <input type="color" id="stroke" class="stroke-color" value='#000000' onchange="onSetStrokeColor(this.value)"/>
+          <div class="stickers-container"></div>
+        </div>
+      </div> 
+      </div>
+    </div>
+    <footer class="footer flex flex-column align-center justify-center">
+      <img src="assets/logo.png" alt="" class="logo" />
+      <small class="footer-text">&copy; Shiran Elad 2022</small>
+    </footer>
+      <!-- Footer -->
+      <script src="js/meme-services.js"></script>
+      <script src="js/meme-controller.js"></script>
+      <script src="js/gallery-services.js"></script>
+    <script src="js/gallery-controller.js"></script>
+  </body>
+</html>

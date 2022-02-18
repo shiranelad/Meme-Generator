@@ -1,0 +1,19 @@
+.footer {
+    background-color: var(--clr1);
+    height:103px;
+    margin: 0;
+    /* margin: 10px 0; */
+}
+
+.footer .footer-text{
+    font-family: 'Mont 400';
+    color: var(--clr2);
+    margin-top: 4.4px ;    
+}
+
+.footer .logo {
+    /* margin: 12px 0 ; auto  10px  24.5px; */
+    height:21px;
+    width: 133px;
+
+}

@@ -1,0 +1,26 @@
+.main-content-container {
+    height: 900px; 
+    /* background-color: var(--clr5); */
+    /* padding-bottom: 10px; */
+    
+}
+
+.control-box{
+    width:50%;
+}
+
+
+.editor-container{
+    background-color: var(--clr5) ;
+}
+
+.canvas-container {
+    width: 50vw;
+    height: 72.5vh;
+    overflow:hidden;
+    /* margin:20px; */
+}
+
+.sticker:hover{
+    cursor: pointer;
+}

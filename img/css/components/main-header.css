@@ -1,0 +1,38 @@
+.main-header {
+    background-color: var(--clr1);
+    height:66px;
+}
+
+.main-header .logo {
+    /* margin: 12px 0 ; auto  10px  24.5px; */
+    height:21px;
+    width: 133px;
+
+}
+
+.main-header .nav-bar {
+    color: var(--clr2);
+    font-family: 'Mont 400';
+    /* margin: 8.5px 25px 1.7px 4.8px; */
+    font-size: 1.5rem;
+}
+
+
+.main-header .nav-bar > * :not(.separator):hover {
+    color: var(--clr3);
+    cursor: pointer;
+}
+
+.main-header .nav-link {
+    height:66px;
+    padding: 13px;
+}
+
+.main-header .nav-link:hover {
+    border-bottom: var(--clr3) 5px solid;
+}
+
+.main-header .separator {
+    color: var(--clr4);
+    margin: 0px 4.8px 6.8px 4.5px;
+}

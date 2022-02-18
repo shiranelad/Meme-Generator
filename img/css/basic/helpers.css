@@ -1,0 +1,37 @@
+.flex {
+    display: flex;
+}
+.flex.flex-column {
+    flex-direction: column;
+}
+
+.flex.space-between{
+    justify-content: space-between;
+}
+.flex.space-around{
+    justify-content: space-around;
+}
+.flex.justify-center{
+    justify-content: center;
+}
+
+.flex.align-center{
+    align-items: center;
+}
+
+.clean-list{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.clean-a {
+    text-decoration: none;
+    color:inherit;
+}
+
+
+.icon {
+    width: 0.875rem;
+    height: 0.875rem;
+}
