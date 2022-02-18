@@ -20,33 +20,48 @@
 
     <!-- Main Content -->
     <div class="main-content-container main-content">
-      <input type="search" class="search-bar" onkeyup="setFilter(this.value)" placeholder="Search memes by category..."/>
+      <input list="categories" name="category" id="category" class="search-bar" onkeyup="setFilter(this.value)" placeholder="Search memes by category..." />
+      <datalist id="categories"></datalist>
+
       <div class="gallery-container">
       </div>
       <div class="editor-container flex" > 
-        <div class="canvas-container" onclick="canvasClicked(event)">
+        <div class="canvas-container" ">
           <canvas class="meme-canvas" width="650px" height="650px" ></canvas>
         </div>
         <div class="control-box">
           <input type="text" name="text-line" placeholder="Enter text here" onkeyup="onChangeText()">
           
-          <button class="btn move-down">Move Down</button>
-          <button class="btn move-up">Move Up</button>
-          <button class="btn switch-lines">Switch Lines</button>
+          <button class="btn move-down" onclick="onMoveDown()">Move Down</button>
+          <button class="btn move-up" onclick="onMoveUp()">Move Up</button>
+          <button class="btn switch-lines" onclick="onSwitchLine()">Switch Lines</button>
           <button class="btn add-line" onclick="onAddLine()">Add</button>
-          <button class="btn del-line">Delete</button>
-          <button class="btn increase-text">Increase Text</button>
-          <button class="btn decrease-text">Decrease Text</button>
-          <button class="btn align-left" >Align Left</button>
-          <button class="btn align-center" >Align Center</button>
-          <button class="btn align-right" >Align Right</button>
-          <select class="choose-font">
-            <option value="1">IMPACT</option>
-            <option value="2">ARIAL</option>
-            <option value="3">TAHOMA</option>
+          <button class="btn del-line" onclick="onDelete()">Delete</button>
+          <button class="btn increase-text" onclick="onIncrease()">Increase Text</button>
+          <button class="btn decrease-text" onclick="onDecrease()">Decrease Text</button>
+          <button class="btn align-left" onclick="onAlignText('left')">Align Left</button>
+          <button class="btn align-center" onclick="onAlignText('center')">Align Center</button>
+          <button class="btn align-right" onclick="onAlignText('right')">Align Right</button>
+          <select class="choose-font" onchange="onChangeFont(this.value)">
+            <option value="Impact">Impact</option>
+            <option value="Arial">Arial</option>
+            <option value="Tahoma">Tahoma</option>
+            <option value="Comic Sans">Comic Sans</option>
+            <option value="Consolas">Consolas</option>
           </select>
-          <button class="stroke">Stroke</button>
-          <input type="color" class="choose-color" />
+          <label for="color">Text Color</label>
+          <input type="color" id="color" class="text-color" value='#ffffff' onchange="onSetTextColor(this.value)"/>
+          <label for="stroke">Stroke Color</label>
+          <input type="color" id="stroke" class="stroke-color" value='#000000' onchange="onSetStrokeColor(this.value)"/>
+          <div class="stickers-container">
+            <!-- <span class="sticker" onclick="onAddSticker('🥳')">🥳</span>
+            <span class="sticker" onclick="onAddSticker('🤩')">🤩</span>
+            <span class="sticker" onclick="onAddSticker('🙂')">🙂</span>
+            <span class="sticker" onclick="onAddSticker('😖')">😖</span>
+            <span class="sticker" onclick="onAddSticker('👻')">👻</span>
+            <span class="sticker" onclick="onAddSticker('🧞')">🧞</span>
+            <span class="sticker" onclick="onAddSticker('🥸')">🥸</span> -->
+          </div>
         </div>
       </div> 
         <footer class="footer flex flex-column align-center justify-center">

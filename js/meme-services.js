@@ -2,27 +2,13 @@
 
 var gMeme;
 
-function createMeme(id) {
+function setImg(id) {
     var meme = {
         selectedImgId: id,
-        selectedLineIdx: 1,
+        selectedLineIdx: 0,
 
-        lines: [
-            {
-                txt: 'Enter text here',
-                thickness: 2,
-                size: 40,
-                font: 'Impact',
-                align: 'center',
-                color: 'white',
-                strokeColor: 'black',
-                withStroke: true,
-                pos: { x: gCanvas.width / 2, y: gCanvas.height / 8 },
-                // boxX: {  startX: ( gCanvas.width/2), endX: gCanvas.width/2 },
-                // boxY: { startY: gCanvas.height / 8 , endY: gCanvas.height / 8 - 40},
-                isDrag: false,
-            }
-        ]
+        lines: [createLine(gCanvas.width / 2, gCanvas.height / 8)]
+
     }
     return meme;
 }
@@ -33,8 +19,6 @@ function getMeme() {
 
 function setLineText(text) {
     getSelectedLine().txt = text
-    renderMeme()
-    return gMeme
 }
 
 function getLineText() {
@@ -56,10 +40,8 @@ function addLine() {
     }
 
     gMeme.lines.push(createLine(posX, posY))
-    gMeme.selectedLineIdx = (gMeme.lines.length)
-    console.log(gMeme)
+    gMeme.selectedLineIdx = (gMeme.lines.length - 1)
     // document.querySelector('input[name=text-line]').value = getSelectedLine().txt
-    renderMeme()
 }
 
 function createLine(x, y) {
@@ -70,61 +52,71 @@ function createLine(x, y) {
         size: 40,
         font: 'Impact',
         align: 'center',
-        color: 'white',
-        strokeColor: 'black',
+        color: '#ffffff',
+        strokeColor: '#000000',
         withStroke: true,
         pos: { x, y },
-        // boxX,
-        // boxY,
+        isDrag: false,
+        isFocus: false
     }
 }
 
 function getSelectedLine() {
-    return gMeme.lines[gMeme.selectedLineIdx - 1]
+    return gMeme.lines[gMeme.selectedLineIdx]
+}
+
+function getLineByIdx(idx) {
+    return gMeme.lines[idx]
 }
 
 function getSelectedLineIdx() {
-    return gMeme.selectedLineIdx - 1;
+    return gMeme.selectedLineIdx;
+}
+
+function findCellClicked(pos) {
+    var idx = gMeme.lines.findIndex(line => isTextClicked(pos, line))
+    gMeme.selectedLineIdx = idx
+    var line = gMeme.lines[idx]
+    return line
 }
 
 function setTextDrag(isDrag) {
-    gMeme.lines[gMeme.selectedLineIdx - 1].isDrag = isDrag
+    getSelectedLine().isDrag = isDrag
 }
 
-function isTextClicked(clickedPos,line) {
-    // var line = gMeme.lines[getSelectedLineIdx()];
+function isTextClicked(clickedPos, line) {
+    if(!line) return
     const { pos } = line
-    checkBounds(line)
     const posX = checkAlign(pos, line)
-
     return clickedPos.x >= posX.startX && clickedPos.x <= posX.endX &&
         clickedPos.y <= pos.y && clickedPos.y >= pos.y - line.size
 }
 
-function checkBounds(line) {
-    const metrics = gCtx.measureText(line.txt) //gMeme.lines[getSelectedLineIdx()].txt
-    const width = Math.abs(metrics.actualBoundingBoxLeft) +
-        Math.abs(metrics.actualBoundingBoxRight);
-    const height = Math.abs(metrics.actualBoundingBoxAscent) +
-        Math.abs(metrics.actualBoundingBoxDescent);
-    const bounds = {
-        top: line.pos.y - metrics.actualBoundingBoxAscent,
-        right: line.pos.x + metrics.actualBoundingBoxRight,
-        bottom: line.pos.y + metrics.actualBoundingBoxDescent,
-        left: line.pos.x - metrics.actualBoundingBoxLeft
-    };
+function setTextColor(color) {
+    return getSelectedLine().color = color
+}
+function setStrokeColor(color) {
+    return getSelectedLine().strokeColor = color
+}
 
-    // const center = [
-    //     (bounds.left + bounds.right) / 2,
-    //     (bounds.top + bounds.bottom) / 2
-    //   ];
+function deleteLine() {
+    return gMeme.lines.splice(getSelectedLineIdx(), 1)
+}
 
-      drawRect(bounds.left,bounds.top, width,height)
-    //   renderMeme()
+function changeFont(font) {
+    var line = getSelectedLine()
+    line.font = font
+}
+
+function moveUp() {
+    return getSelectedLine().pos.y -= 5
+}
+function moveDown() {
+    return getSelectedLine().pos.y += 5
 }
 
 
-function checkAlign(pos,line) {
+function checkAlign(pos, line) {
     var align = line.align //gMeme.lines[getSelectedLineIdx()]
     var txtSize = gCtx.measureText(line.txt);
     var startX = 0;
@@ -148,4 +140,15 @@ function checkAlign(pos,line) {
 function moveText(dx, dy) {
     gMeme.lines[getSelectedLineIdx()].pos.x += dx
     gMeme.lines[getSelectedLineIdx()].pos.y += dy
+}
+
+function switchLine() {
+    var currIdx = getSelectedLineIdx()
+    if (gMeme.lines.length - 1 > currIdx) {
+        gMeme.selectedLineIdx++;
+    }
+    else {
+        gMeme.selectedLineIdx = 0
+    }
+    return getSelectedLineIdx()
 }

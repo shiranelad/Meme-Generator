@@ -1,6 +1,6 @@
 'use strict'
 var gFilterBy = ''
-var gKeywords = {'funny': 12,'cat': 16, 'baby': 2}
+var gKeywords //= {'funny': 12,'cats': 16, 'baby': 2}
 
 var gImgs ;
 
@@ -45,4 +45,10 @@ function getImgForDisplay() {
 
 function getImg(id) {
     return gImgs.find((img) => img.id === id)
+}
+
+function setInitialKeywordSize() {
+    gKeywords['funny'] = 12
+    gKeywords['cats'] = 4
+    gKeywords['baby'] = 10
 }
