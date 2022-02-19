@@ -18,6 +18,7 @@ function getMeme() {
 }
 
 function setLineText(text) {
+    if(!text) return
     getSelectedLine().txt = text
 }
 
@@ -41,7 +42,6 @@ function addLine() {
 
     gMeme.lines.push(createLine(posX, posY))
     gMeme.selectedLineIdx = (gMeme.lines.length - 1)
-    // document.querySelector('input[name=text-line]').value = getSelectedLine().txt
 }
 
 function createLine(x, y) {
@@ -171,7 +171,6 @@ function updateLinesPos(){
         } 
         var metrics = gCtx.measureText(gMeme.lines[i].txt)
         if(metrics.width > gCanvas.width ){
-            console.log(i)
             gMeme.lines[i].size -= 20;
         }
         if(gMeme.lines[i].txt === 'Enter text here' && gCanvas.width > 430){

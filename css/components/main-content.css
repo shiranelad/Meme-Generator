@@ -42,21 +42,18 @@
 .main-content .control-box {
     display: grid;
     /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr ;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr; */
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr; */
     grid-auto-flow:column;
     grid-template-areas: 
         "text       text        text      text      text"
         "add        del         plus      minus     switch"
         "down       up          left      center    right"
-        "color      stroke      font    font    download"
-        "stickers       stickers        stickers      stickers      stickers";
-    /* height: 100vh; */
-    /* width: 50vw; */
+        "color      stroke      font      font      font"
+        "stickers       stickers        stickers      stickers      stickers"
+        ".  facebook          download      save      .";
     gap:0.625rem;
-    justify-content: space-around;
     align-content: center;
-    /* text-align: center; */
-    /* margin: auto;     */
+    justify-content: space-between;
 }
 
 .text-line{
@@ -105,6 +102,7 @@
     /* margin-inline-end: 20px; */
 }
 
+
 .stickers-container{
     grid-area: stickers;
     border: black 2px solid;
@@ -136,4 +134,11 @@
 
 .download {
     grid-area: download;
+}
+
+.facebook{
+    grid-area: facebook;
+}
+.save{
+    grid-area: save;
 }

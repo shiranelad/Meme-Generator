@@ -87,7 +87,22 @@
     .control-box {
         width: 30%;
         margin: auto;
+        
     }  
+
+    .btn{
+        width:35px;
+        height:35px;
+    }
+
+    .btn img{
+        width:20px;
+        height:20px;
+    }
+
+    .text-line{
+        margin-block-end: 1.25em;
+    }
 
     /* Gallery */
     .card-img {
@@ -99,11 +114,25 @@
         flex-direction: row;
         align-items: center;
     }
-
 }
 
 @media (min-width: 908px) {
 
+    .btn{
+        width:4.375em;
+        height:4.375em;
+        }
+    
+        .btn img{ 
+            width:2.5em;
+            height:2.5em;
+        }
+    
+        .control-box {
+            width: auto;
+            margin: 1.625em;
+        }
+        
 
     .control-box {
         width: 30%;

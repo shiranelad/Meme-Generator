@@ -26,5 +26,6 @@ body {
 
 .btn:hover{
     background-color: var(--clr2);
-    border: 5px solid var(--clr1)
+    border: 2px solid var(--clr1);
+    cursor:pointer;
 }

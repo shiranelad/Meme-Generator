@@ -6,7 +6,7 @@ var gCurrX;
 var gStartPos;
 const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
 const gStickers = ['🥳', '🤩', '🙂', '😖', '👻', '🧞', '🥸', '🤪', '😎', '💩', '💖', '🙈', '🦋', '👄', '🤙', '🎁', '🕶️', '⚽', '💋']
-
+var gIsRectOn = false
 
 
 
@@ -14,9 +14,8 @@ function init() {
     gCanvas = document.querySelector('canvas')
     gCtx = gCanvas.getContext('2d');
     createImgs();
-    renderGallery(); // put after done with canvas memes
+    renderGallery();
     resizeCanvas();
-
     addListeners()
 }
 
@@ -55,8 +54,8 @@ function renderMeme() {
 
 function resizeCanvas() {
     var elContainer = document.querySelector('.canvas-container')
-    gCanvas.width = elContainer.offsetWidth
-    gCanvas.height = elContainer.offsetWidth
+    gCanvas.width = elContainer.offsetWidth * (gCanvas.width > 600 ? 0.9 : 1)
+    gCanvas.height = elContainer.offsetWidth * (gCanvas.width > 600 ? 0.9 : 1)
     if (!gMeme || gMeme.length <= 0) return
     updateLinesPos()
     renderMeme();
@@ -65,7 +64,6 @@ function resizeCanvas() {
 /* Draw on Canvas */
 function drawText() {
     if (!gMeme.lines.length) return
-    // var textInput = document.querySelector('input[name="text-line"]').placeholder;
     gMeme.lines.forEach(line => {
         gCtx.lineWidth = line.thickness;
         gCtx.strokeStyle = line.strokeColor;
@@ -82,7 +80,6 @@ function drawImg(img) {
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height)
         drawText();
-        // drawRect()
     }
 }
 
@@ -168,14 +165,15 @@ function onDown(ev) {
     const pos = getEvPos(ev)
     var line = findCellClicked(pos)
     if (!line) {
+        document.querySelector('input[name="text-line"]').placeholder = '';
         renderMeme()
         return
     }
-    if(line.txt === 'Enter text here'){
+    if (line.txt === 'Enter text here') {
         document.querySelector('input[name="text-line"]').value = '';
         document.querySelector('input[name="text-line"]').placeholder = line.txt;
     }
-    else { 
+    else {
         document.querySelector('input[name="text-line"]').value = line.txt;
     }
     if (!isTextClicked(pos, line)) {
@@ -183,18 +181,16 @@ function onDown(ev) {
         return
     }
     gCtx.font = `${line.size}px ${line.font}`
-    // drawRect()
-    // var { left, top, width, height } = checkBounds(line)
-    // drawRect(left, top, width, height)
-
+    // if (line === getSelectedLine()){
+    //     var { left, top, width, height } = checkBounds(line)
+    //     drawRect(left, top, width, height)
+    // }
     setTextDrag(true)
     gStartPos = pos
     document.body.style.cursor = 'grabbing'
 }
 
 function onMove(ev) {
-    // var meme = getMeme()
-    // if (meme.lines[meme.selectedLineIdx].isDrag) {
     if (!getSelectedLine()) return
     else if (getSelectedLine().isDrag) {
         const pos = getEvPos(ev)
@@ -273,7 +269,7 @@ function drawRect() {
 }
 
 function checkBounds(line) {
-    const metrics = gCtx.measureText(line.txt) 
+    const metrics = gCtx.measureText(line.txt)
     const width = metrics.width
     const height = Math.abs(metrics.actualBoundingBoxAscent) +
         Math.abs(metrics.actualBoundingBoxDescent);
@@ -285,7 +281,7 @@ function checkBounds(line) {
     };
 
     return { left: bounds.left, top: bounds.top, width, height }
-    
+
 }
 
 function onSwitchLine() {
@@ -294,15 +290,16 @@ function onSwitchLine() {
     document.querySelector('input[name="text-line"]').value = getSelectedLine().txt;
     getLineValues(getSelectedLine())
     // drawRect()
-    
+
 }
 
 function getLineValues(line) {
-    if(line.txt === 'Enter text here'){
+    if(!line) return
+    if (line.txt === 'Enter text here') {
         document.querySelector('input[name="text-line"]').value = '';
         document.querySelector('input[name="text-line"]').placeholder = line.txt;
     }
-    else { 
+    else {
         document.querySelector('input[name="text-line"]').value = line.txt;
     }
     document.querySelector('.text-color').value = line.color;
@@ -312,7 +309,6 @@ function getLineValues(line) {
 }
 
 function setLineValues(line) {
-    // line.txt = document.querySelector('input[name="text-line"]').value;
     line.color = document.querySelector('.text-color').value;
     line.strokeColor = document.querySelector('.stroke-color').value;
     line.font = document.querySelector('.choose-font').value;
@@ -324,9 +320,9 @@ function downloadMeme(elLink) {
     elLink.href = imgContent
 }
 
-function clickColor(el){
+function clickColor(el) {
     if (el === 'text')
-        document.querySelector('.text-color').click(); 
-    else 
-        document.querySelector('.stroke-color').click(); 
+        document.querySelector('.text-color').click();
+    else
+        document.querySelector('.stroke-color').click();
 }

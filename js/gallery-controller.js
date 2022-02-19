@@ -48,6 +48,7 @@ function renderCategories() {
     elDataList.innerHTML = strHtmls.join('')
 }
 
+
 /* Hamburger */
 function onCloseHamburgerMenu() {
     var elMenu = document.querySelector('.nav-bar');

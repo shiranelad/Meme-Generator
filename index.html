@@ -21,7 +21,7 @@
 
     <!-- Main Content -->
     <div class="main-content-container main-content">
-      <input list="categories" name="category" id="category" class="main-layout search-bar" onkeyup="setFilter(this.value)" placeholder="Search memes by category..." />
+      <input list="categories" name="category" id="category" class="main-layout search-bar" onkeyup="setFilter(this.value)" placeholder="Search memes by keyword..." />
       <datalist id="categories"></datalist>
 
       <div class="gallery-container">
@@ -60,13 +60,17 @@
             <img src="assets/icons/text stroke.png">
             <input type="color" id="stroke" class="stroke-color" value='#000000' onchange="onSetStrokeColor(this.value)"/>
           </button>
+          <a href="#" class="export download" onclick="downloadMeme(this)" download="my-img.jpg"><button title="Download Meme" class="btn"><img src="assets/icons/download-solid.svg"></button></a>
+          <a href="#" class="export facebook" onclick="uploadImg()"><button title="Share to Facebook" class="btn"><img src="assets/icons/facebook-logo.png"></button></a>
+          <a href="#" class="export save" onclick="saveMeme()"><button title="Save Meme" class="btn"><img src="assets/icons/save_icon.png"></button></a>
           <div class="stickers-container"></div>
           <div class="export-container">
-            <a href="#" class="export download" onclick="downloadMeme(this)" download="my-img.jpg"><button title="Download Meme" class="btn"><img src="assets/icons/download-solid.svg"></button></a>
-            <!-- <button class="btn export share" onclick="shareMeme(this)">Share on Facebook</button> -->
+            </div>
           </div>
         </div>
       </div> 
+    </div>
+    <div class="about-modal">
     </div>
     <footer class="footer flex flex-column align-center justify-center">
       <img src="assets/logo.png" alt="" class="logo" />
@@ -76,6 +80,7 @@
       <script src="js/meme-services.js"></script>
       <script src="js/meme-controller.js"></script>
       <script src="js/gallery-services.js"></script>
-    <script src="js/gallery-controller.js"></script>
-  </body>
+      <script src="js/gallery-controller.js"></script>
+      <script src="js/upload-service.js"></script>
+    </body>
 </html>
