@@ -152,3 +152,32 @@ function switchLine() {
     }
     return getSelectedLineIdx()
 }
+
+function updateLinesPos(){
+    if (!gMeme || gMeme.lines.length < 0) return;
+    var origSelected = getSelectedLine()
+    for (var i = 0; i< gMeme.lines.length; i++){
+        gMeme.lines[i].pos.x = gCanvas.width / 2
+        var align = gMeme.lines[i].align
+        console.log(align)
+        console.log(gMeme.lines[i].pos)
+        gMeme.lines[i].align = 'center'
+        renderMeme()
+        if (i === 0) {
+            gMeme.lines[i].pos.y = gCanvas.height / 8
+        }
+        else if (i === 1) {
+            gMeme.lines[i].pos.y = gCanvas.height - (gCanvas.height * 0.1)
+        }
+        else {
+            gMeme.lines[i].pos.y = gCanvas.height / 2
+        } 
+        if(gCanvas.width <= gCtx.measureText(gMeme.lines[i].txt).width){
+            console.log(i)
+            gMeme.lines[i].size -= 20;
+        }
+        gMeme.selectedLineIdx = i;
+        onAlignText(align)
+        gMeme.selectedLineIdx = origSelected
+    }
+}

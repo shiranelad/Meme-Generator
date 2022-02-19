@@ -2,9 +2,26 @@
     width:70%;
 }
 
+.control-box {
+    width: auto;
+    margin: 1.625em;
+}
+
+.btn {
+    width: 40px;
+    height: 40px;
+    border-width: 2px;
+}
+
+.btn img {
+    width: 20px;
+    height: 20px;
+}
 
 .editor-container{
     background-color: var(--clr5) ;
+    flex-direction: column;
+    align-items: center;
 }
 
 .canvas-container {
@@ -90,9 +107,10 @@
 
 .stickers-container{
     grid-area: stickers;
-    border: black 5px solid;
+    border: black 2px solid;
     border-radius: 0.625rem;
     margin-inline-end: 1.25rem;
+    text-align: center;
 }
 
 .btn.btn-textcolor{
@@ -113,7 +131,7 @@
 }
 
 .sticker{
-    font-size: 3em;
+    font-size: 2em;
 }
 
 .download {

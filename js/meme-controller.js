@@ -11,12 +11,12 @@ const gStickers = ['🥳', '🤩', '🙂', '😖', '👻', '🧞', '🥸', '🤪
 
 
 function init() {
-    createImgs();
-    renderGallery(); // put after done with canvas memes
-
     gCanvas = document.querySelector('canvas')
     gCtx = gCanvas.getContext('2d');
+    createImgs();
+    renderGallery(); // put after done with canvas memes
     resizeCanvas();
+
     addListeners()
 }
 
@@ -56,7 +56,9 @@ function renderMeme() {
 function resizeCanvas() {
     var elContainer = document.querySelector('.canvas-container')
     gCanvas.width = elContainer.offsetWidth
+    gCanvas.height = elContainer.offsetWidth
     if (!gMeme || gMeme.length <= 0) return
+    updateLinesPos()
     renderMeme();
 }
 
