@@ -6,11 +6,12 @@
     background-color: var(--clr5);
    height:900px;
    padding:20px;
+   min-width: 410px;
 }
 
 .card-img{
-    width:200px;
-    height:200px;
+    width:100px;
+    height:100px;
 }
 
 .card-img:hover{

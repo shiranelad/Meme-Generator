@@ -1,0 +1,114 @@
+@media (min-width: 640px) {
+    
+    .editor-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .control-box {
+        width: auto;
+        margin: 1.625em;
+    }
+
+    .btn {
+        width: 40px;
+        height: 40px;
+        border-width: 2px;
+    }
+
+    .btn img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .sticker {
+        font-size: 2em;
+    }
+
+    .stickers-container {
+        border-width: 2px;
+    }
+
+    /* Gallery */
+    .card-img {
+        width: 120px;
+        height: 120px;
+    }
+
+    /* hamburger */
+    .main-header .nav-bar{
+        display:none;
+    }
+
+    .main-header .hamburger {
+        display: none;
+    }
+
+    .main-header .nav-link {
+        height:66px;
+        padding: 13px;
+    }
+    
+
+    .main-header .nav-bar {
+        color: var(--clr2);
+        font-family: 'Mont 400';
+        font-size: 1.5rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        position: static;
+    }
+
+    .separator {
+        display: inline;
+    }
+}
+
+@media (min-width: 708px) {
+
+    .control-box {
+        width: 30%;
+        margin: auto;
+    }
+
+    /* Gallery */
+    .card-img {
+        width: 140px;
+        height: 140px;
+    }
+
+}
+
+@media (min-width: 908px) {
+
+
+    .control-box {
+        width: 30%;
+        margin: auto;
+    }
+
+    /* Gallery */
+    .card-img {
+        width: 170px;
+        height: 170px;
+    }
+}
+
+@media (min-width: 1135px) {
+
+    .control-box {
+        width: 30%;
+        margin: auto;
+    }
+
+    /* Gallery */
+    .card-img {
+        width: 200px;
+        height: 200px;
+    }
+
+
+
+}

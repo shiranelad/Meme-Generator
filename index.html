@@ -11,7 +11,8 @@
     <!-- Header  -->
     <header class="main-header flex space-between align-center ">
       <img src="assets/logo.png" alt="" class="logo main-layout" />
-      <ul class="nav-bar flex align-center justify-center clean-list main-layout">
+      <button class="hamburger" onmouseover="onOpenHamburgerMenu()" onclick="onCloseHamburgerMenu()">☰</button>
+      <ul class="nav-bar active flex align-center justify-center clean-list main-layout">
         <li ><a href='#' class="gallery clean-a nav-link" onclick="renderGallery()">Gallery</a></li>
         <li><span class="separator">|</span></li>
         <li><a href='#' class="about clean-a nav-link">About</a></li>
@@ -27,7 +28,7 @@
       </div>
       <div class="editor-container flex" > 
         <div class="canvas-container" ">
-          <canvas class="meme-canvas" width="600px" height="600px" ></canvas>
+          <canvas class="meme-canvas" width="700px" height="700px" ></canvas>
         </div>
         <div class="control-box">
           <input class="text-line" type="text" name="text-line" placeholder="Enter text here" onkeyup="onChangeText()">
@@ -49,15 +50,12 @@
             <option value="Comic Sans">Comic Sans</option>
             <option value="Consolas">Consolas</option>
           </select>
-          <!-- <label for="color">Text Color</label> -->
-
-          
+                    
           <button title="Choose Font Color" class="btn btn-textcolor" onclick="clickColor('text')">
             <img src="assets/icons/paint-board-and-brush.png">
             <input type="color" id="color" class="text-color"  value='#ffffff' onchange="onSetTextColor(this.value)"/>
           </button>
-          <!-- <label for="stroke">Stroke Color</label> -->
-
+  
           <button title="Choose Stroke Color" class="btn btn-strokecolor" onclick="clickColor('stroke')">
             <img src="assets/icons/text stroke.png">
             <input type="color" id="stroke" class="stroke-color" value='#000000' onchange="onSetStrokeColor(this.value)"/>

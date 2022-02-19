@@ -9,15 +9,15 @@ body {
 }
 
 .btn img{ 
-    width:40px;
-    height:40px;
+    width:2.5em;
+    height:2.5em;
 }
 
 .btn {
     border: 5px solid black;
-    border-radius: 10px;
-    width:70px;
-    height:70px;
+    border-radius: 0.625rem;
+    width:4.375em;
+    height:4.375em;
     text-align: center;
 }
 

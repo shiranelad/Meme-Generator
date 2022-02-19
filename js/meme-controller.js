@@ -140,7 +140,7 @@ function onMoveDown() {
 /* Listeners */
 function addListeners() {
     addMouseListeners()
-    // addTouchListeners()
+    addTouchListeners()
     window.addEventListener('resize', () => {
         resizeCanvas()
     })

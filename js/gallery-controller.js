@@ -47,3 +47,19 @@ function renderCategories() {
     
     elDataList.innerHTML = strHtmls.join('')
 }
+
+/* Hamburger */
+function onCloseHamburgerMenu() {
+    var elMenu = document.querySelector('.nav-bar');
+    elMenu.classList.remove('active');
+    var elIcon = document.querySelector('.hamburger');
+    elIcon.innerText = '☰'
+}
+
+function onOpenHamburgerMenu() {
+    var elMenu = document.querySelector('.nav-bar');
+    elMenu.style.display = 'flex';
+    elMenu.classList.add('active');
+    var elIcon = document.querySelector('.hamburger');
+    elIcon.innerHTML = '&#x2715'
+}

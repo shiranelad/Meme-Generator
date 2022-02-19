@@ -2,6 +2,7 @@
     background-color: var(--clr1);
     height:103px;
     margin: 0;
+    min-width: 410px;
     /* margin: 10px 0; */
 }
 
