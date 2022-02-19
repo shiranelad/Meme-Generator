@@ -3,10 +3,9 @@
 var gCanvas;
 var gCtx;
 var gCurrX;
-var gCurrY;
 var gStartPos;
 const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
-const gStickers = ['🥳', '🤩', '🙂', '😖', '👻', '🧞', '🥸']
+const gStickers = ['🥳', '🤩', '🙂', '😖', '👻', '🧞', '🥸', '🤪', '😎', '💩', '💖', '🙈', '🦋', '👄', '🤙', '🎁', '🕶️', '⚽', '💋']
 
 
 
@@ -37,7 +36,7 @@ function onImgSelect(id) {
     var elControl = document.querySelector('.control-box')
     elCanvas.style.display = 'flex';
     resizeCanvas();
-    elControl.style.display = 'block';
+    elControl.style.display = 'grid';
     elSearchBar.style.display = 'none';
     elGallery.style.display = 'none';
     gMeme = setImg(id)
@@ -81,6 +80,7 @@ function drawImg(img) {
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height)
         drawText();
+        // drawRect()
     }
 }
 
@@ -93,7 +93,7 @@ function onChangeText() {
 
 function onAddLine() {
     var line = getSelectedLine()
-    if(line) getLineValues(line)
+    if (line) getLineValues(line)
     addLine()
     setLineValues(getSelectedLine())
     document.querySelector('input[name="text-line"]').value = '';
@@ -163,14 +163,17 @@ function addTouchListeners() {
 function onDown(ev) {
     const pos = getEvPos(ev)
     var line = findCellClicked(pos)
-    if(!line) return
+    if (!line) {
+        renderMeme()
+        return
+    }
     document.querySelector('input[name="text-line"]').value = line.txt;
     if (!isTextClicked(pos, line)) {
         renderMeme()
         return
     }
     gCtx.font = `${line.size}px ${line.font}`
-
+    // drawRect()
     // var { left, top, width, height } = checkBounds(line)
     // drawRect(left, top, width, height)
 
@@ -207,19 +210,17 @@ function onChangeFont(font) {
 
 function onAlignText(align) {
     var line = getSelectedLine()
-    if(line === 'center') {
-        gCurrX = line.pos.x
-        gCurrY = line.pos.y
+    if (line.align === 'center') {
+        gCurrX = gCanvas.clientWidth / 2
     }
     line.align = align
-    var width = gCtx.measureText(getSelectedLine().txt).width
+    var width = gCtx.measureText(line.txt).width
     switch (align) {
         case 'left':
             line.pos.x = 10
             break;
         case 'right':
-            line.pos.x = gCtx.width - width
-
+            line.pos.x = gCanvas.clientWidth - 10
             break;
         case 'center':
             line.pos.x = gCurrX
@@ -251,12 +252,12 @@ function getEvPos(ev) {
 }
 
 
-function drawRect(left, top, width, height) {
-    if(getSelectedLine() === null) return
+function drawRect() {
+    if (getSelectedLine() === null) return
+    const { left, top, width, height } = checkBounds(getSelectedLine())
     gCtx.beginPath();
     gCtx.rect(left, top, width, height);
     gCtx.fillStyle = '';
-    // gCtx.fillRect(left, top, width, height);
     gCtx.strokeStyle = 'white';
     gCtx.stroke();
 }
@@ -282,11 +283,12 @@ function checkBounds(line) {
 }
 
 function onSwitchLine() {
-    if(!getSelectedLine()) return
+    if (!getSelectedLine()) return
     switchLine();
     document.querySelector('input[name="text-line"]').value = getSelectedLine().txt;
     getLineValues(getSelectedLine())
-
+    // drawRect()
+    
 }
 
 function getLineValues(line) {
@@ -303,4 +305,16 @@ function setLineValues(line) {
     line.strokeColor = document.querySelector('.stroke-color').value;
     line.font = document.querySelector('.choose-font').value;
     return
+}
+
+function downloadMeme(elLink) {
+    var imgContent = gCanvas.toDataURL('image/jpeg')
+    elLink.href = imgContent
+}
+
+function clickColor(el){
+    if (el === 'text')
+        document.querySelector('.text-color').click(); 
+    else 
+        document.querySelector('.stroke-color').click(); 
 }

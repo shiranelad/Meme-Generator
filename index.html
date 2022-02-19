@@ -9,66 +9,71 @@
   </head>
   <body onload="init()">
     <!-- Header  -->
-    <header class="main-header flex space-between">
-      <img src="assets/logo.png" alt="" class="logo" />
-      <ul class="nav-links flex align-center justify-center clean-list">
-        <li ><a href='#' class="gallery clean-a item" onclick="renderGallery()">Gallery</a></li>
+    <header class="main-header flex space-between align-center ">
+      <img src="assets/logo.png" alt="" class="logo main-layout" />
+      <ul class="nav-bar flex align-center justify-center clean-list main-layout">
+        <li ><a href='#' class="gallery clean-a nav-link" onclick="renderGallery()">Gallery</a></li>
         <li><span class="separator">|</span></li>
-        <li><a href='#' class="about clean-a item">About</a></li>
+        <li><a href='#' class="about clean-a nav-link">About</a></li>
       </ul>
     </header>
 
     <!-- Main Content -->
     <div class="main-content-container main-content">
-      <input list="categories" name="category" id="category" class="search-bar" onkeyup="setFilter(this.value)" placeholder="Search memes by category..." />
+      <input list="categories" name="category" id="category" class="main-layout search-bar" onkeyup="setFilter(this.value)" placeholder="Search memes by category..." />
       <datalist id="categories"></datalist>
 
       <div class="gallery-container">
       </div>
       <div class="editor-container flex" > 
         <div class="canvas-container" ">
-          <canvas class="meme-canvas" width="650px" height="650px" ></canvas>
+          <canvas class="meme-canvas" width="600px" height="600px" ></canvas>
         </div>
         <div class="control-box">
-          <input type="text" name="text-line" placeholder="Enter text here" onkeyup="onChangeText()">
+          <input class="text-line" type="text" name="text-line" placeholder="Enter text here" onkeyup="onChangeText()">
           
-          <button class="btn move-down" onclick="onMoveDown()">Move Down</button>
-          <button class="btn move-up" onclick="onMoveUp()">Move Up</button>
-          <button class="btn switch-lines" onclick="onSwitchLine()">Switch Lines</button>
-          <button class="btn add-line" onclick="onAddLine()">Add</button>
-          <button class="btn del-line" onclick="onDelete()">Delete</button>
-          <button class="btn increase-text" onclick="onIncrease()">Increase Text</button>
-          <button class="btn decrease-text" onclick="onDecrease()">Decrease Text</button>
-          <button class="btn align-left" onclick="onAlignText('left')">Align Left</button>
-          <button class="btn align-center" onclick="onAlignText('center')">Align Center</button>
-          <button class="btn align-right" onclick="onAlignText('right')">Align Right</button>
-          <select class="choose-font" onchange="onChangeFont(this.value)">
+          <button title="Add New Line" class="btn add-line" onclick="onAddLine()"><img src="assets/icons/add.png"></button> <!-- Add -->
+          <button title="Delete Line" class="btn del-line" onclick="onDelete()"><img src="assets/icons/trash.png"></button> <!-- Delete-->
+          <button title="Increase Font Size" class="btn increase-text" onclick="onIncrease()"><img src="assets/icons/increase font - icon.png"></button> <!-- Increase Text -->
+          <button title="Decrease Font Size" class="btn decrease-text" onclick="onDecrease()"><img src="assets/icons/decrease font - icon.png"></button> <!-- Decrease Text -->
+          <button title="Switch Line" class="btn switch-lines" onclick="onSwitchLine()"><img src="assets/icons/up-and-down-opposite-double-arrows-side-by-side.png"></button> <!-- Switch Lines -->
+          <button class="btn move-down" onclick="onMoveDown()"><img src="assets/icons/move-down.png"></button> <!-- Move Down -->
+          <button class="btn move-up" onclick="onMoveUp()"><img src="assets/icons/move-up.png"></button> <!-- Move Up -->
+          <button title="Align Left" class="btn align-left" onclick="onAlignText('left')"><img src="assets/icons/align-to-left.png"></button> <!-- Align Left -->
+          <button title="Align Center" class="btn align-center" onclick="onAlignText('center')"><img src="assets/icons/center-text-alignment.png"></button> <!-- Align Center -->
+          <button title="Align Right" class="btn align-right" onclick="onAlignText('right')"><img src="assets/icons/align-to-right.png"></button> <!-- Align Right -->
+          <select class="btn choose-font" onchange="onChangeFont(this.value)">
             <option value="Impact">Impact</option>
             <option value="Arial">Arial</option>
             <option value="Tahoma">Tahoma</option>
             <option value="Comic Sans">Comic Sans</option>
             <option value="Consolas">Consolas</option>
           </select>
-          <label for="color">Text Color</label>
-          <input type="color" id="color" class="text-color" value='#ffffff' onchange="onSetTextColor(this.value)"/>
-          <label for="stroke">Stroke Color</label>
-          <input type="color" id="stroke" class="stroke-color" value='#000000' onchange="onSetStrokeColor(this.value)"/>
-          <div class="stickers-container">
-            <!-- <span class="sticker" onclick="onAddSticker('🥳')">🥳</span>
-            <span class="sticker" onclick="onAddSticker('🤩')">🤩</span>
-            <span class="sticker" onclick="onAddSticker('🙂')">🙂</span>
-            <span class="sticker" onclick="onAddSticker('😖')">😖</span>
-            <span class="sticker" onclick="onAddSticker('👻')">👻</span>
-            <span class="sticker" onclick="onAddSticker('🧞')">🧞</span>
-            <span class="sticker" onclick="onAddSticker('🥸')">🥸</span> -->
+          <!-- <label for="color">Text Color</label> -->
+
+          
+          <button title="Choose Font Color" class="btn btn-textcolor" onclick="clickColor('text')">
+            <img src="assets/icons/paint-board-and-brush.png">
+            <input type="color" id="color" class="text-color"  value='#ffffff' onchange="onSetTextColor(this.value)"/>
+          </button>
+          <!-- <label for="stroke">Stroke Color</label> -->
+
+          <button title="Choose Stroke Color" class="btn btn-strokecolor" onclick="clickColor('stroke')">
+            <img src="assets/icons/text stroke.png">
+            <input type="color" id="stroke" class="stroke-color" value='#000000' onchange="onSetStrokeColor(this.value)"/>
+          </button>
+          <div class="stickers-container"></div>
+          <div class="export-container">
+            <a href="#" class="export download" onclick="downloadMeme(this)" download="my-img.jpg"><button title="Download Meme" class="btn"><img src="assets/icons/download-solid.svg"></button></a>
+            <!-- <button class="btn export share" onclick="shareMeme(this)">Share on Facebook</button> -->
           </div>
         </div>
       </div> 
-        <footer class="footer flex flex-column align-center justify-center">
-          <img src="assets/logo.png" alt="" class="logo" />
-          <small class="footer-text">&copy; Shiran Elad 2022</small>
-        </footer>
-      </div>
+    </div>
+    <footer class="footer flex flex-column align-center justify-center">
+      <img src="assets/logo.png" alt="" class="logo" />
+      <small class="footer-text">&copy; Shiran Elad 2022</small>
+    </footer>
       <!-- Footer -->
       <script src="js/meme-services.js"></script>
       <script src="js/meme-controller.js"></script>
