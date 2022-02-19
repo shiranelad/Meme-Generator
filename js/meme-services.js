@@ -45,11 +45,10 @@ function addLine() {
 }
 
 function createLine(x, y) {
-    // const { boxX, boxY } = setAlign('center')
     return {
         txt: 'Enter text here',
         thickness: 2,
-        size: 40,
+        size: gCanvas.width < 430 ? 20 : 40,
         font: 'Impact',
         align: 'center',
         color: '#ffffff',
@@ -117,7 +116,7 @@ function moveDown() {
 
 
 function checkAlign(pos, line) {
-    var align = line.align //gMeme.lines[getSelectedLineIdx()]
+    var align = line.align 
     var txtSize = gCtx.measureText(line.txt);
     var startX = 0;
     var endX = 0;
@@ -158,13 +157,11 @@ function updateLinesPos(){
     var origSelected = getSelectedLine()
     for (var i = 0; i< gMeme.lines.length; i++){
         gMeme.lines[i].pos.x = gCanvas.width / 2
-        var align = gMeme.lines[i].align
-        console.log(align)
-        console.log(gMeme.lines[i].pos)
+        var align = gMeme.lines[i].align //save original align to use centered position
         gMeme.lines[i].align = 'center'
         renderMeme()
         if (i === 0) {
-            gMeme.lines[i].pos.y = gCanvas.height / 8
+            gMeme.lines[i].pos.y = (gCanvas.height / 8) + 10
         }
         else if (i === 1) {
             gMeme.lines[i].pos.y = gCanvas.height - (gCanvas.height * 0.1)
@@ -172,12 +169,21 @@ function updateLinesPos(){
         else {
             gMeme.lines[i].pos.y = gCanvas.height / 2
         } 
-        if(gCanvas.width <= gCtx.measureText(gMeme.lines[i].txt).width){
+        var metrics = gCtx.measureText(gMeme.lines[i].txt)
+        if(metrics.width > gCanvas.width ){
             console.log(i)
             gMeme.lines[i].size -= 20;
         }
+        if(gMeme.lines[i].txt === 'Enter text here' && gCanvas.width > 430){
+            gMeme.lines[i].size = 40;
+            renderMeme()
+        }
+        else if(gMeme.lines[i].txt === 'Enter text here' && gCanvas.width < 430){
+            gMeme.lines[i].size = 20;
+            renderMeme()
+        }
         gMeme.selectedLineIdx = i;
-        onAlignText(align)
-        gMeme.selectedLineIdx = origSelected
+        onAlignText(align) //switch back to original align
+        gMeme.selectedLineIdx = origSelected //swtich back to original selected line
     }
 }

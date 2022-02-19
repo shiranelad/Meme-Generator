@@ -88,7 +88,9 @@ function drawImg(img) {
 
 function onChangeText() {
     var text = document.querySelector('input[name="text-line"]').value;
-    if (!text) text = 'Enter text here'
+    if (!text) {
+        text = 'Enter text here'
+    }
     else if (text) setLineText(text)
     renderMeme()
 }
@@ -169,7 +171,13 @@ function onDown(ev) {
         renderMeme()
         return
     }
-    document.querySelector('input[name="text-line"]').value = line.txt;
+    if(line.txt === 'Enter text here'){
+        document.querySelector('input[name="text-line"]').value = '';
+        document.querySelector('input[name="text-line"]').placeholder = line.txt;
+    }
+    else { 
+        document.querySelector('input[name="text-line"]').value = line.txt;
+    }
     if (!isTextClicked(pos, line)) {
         renderMeme()
         return
@@ -265,7 +273,7 @@ function drawRect() {
 }
 
 function checkBounds(line) {
-    const metrics = gCtx.measureText(line.txt) //gMeme.lines[getSelectedLineIdx()].txt
+    const metrics = gCtx.measureText(line.txt) 
     const width = metrics.width
     const height = Math.abs(metrics.actualBoundingBoxAscent) +
         Math.abs(metrics.actualBoundingBoxDescent);
@@ -276,12 +284,8 @@ function checkBounds(line) {
         left: line.pos.x - metrics.actualBoundingBoxLeft
     };
 
-    // const center = [
-    //     (bounds.left + bounds.right) / 2,
-    //     (bounds.top + bounds.bottom) / 2
-    //   ];
     return { left: bounds.left, top: bounds.top, width, height }
-    //   renderMeme()
+    
 }
 
 function onSwitchLine() {
@@ -294,7 +298,13 @@ function onSwitchLine() {
 }
 
 function getLineValues(line) {
-    document.querySelector('input[name="text-line"]').value = line.txt;
+    if(line.txt === 'Enter text here'){
+        document.querySelector('input[name="text-line"]').value = '';
+        document.querySelector('input[name="text-line"]').placeholder = line.txt;
+    }
+    else { 
+        document.querySelector('input[name="text-line"]').value = line.txt;
+    }
     document.querySelector('.text-color').value = line.color;
     document.querySelector('.stroke-color').value = line.strokeColor;
     document.querySelector('.choose-font').value = line.font;
