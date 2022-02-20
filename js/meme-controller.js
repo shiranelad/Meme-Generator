@@ -46,9 +46,9 @@ function onImgSelect(id) {
     renderMeme()
 }
 
-function displayAbout(){
+function displayAbout(type){
     var elAbout = document.querySelector('.about-container');
-    elAbout.style.display = 'flex';
+    elAbout.style.display = type;
 
 }
 
@@ -360,6 +360,7 @@ function onChooseCustomImage(id){
     elControl.style.display = 'grid';
     elSearchBar.style.display = 'none';
     elGallery.style.display = 'none';
+    displayAbout('none')
     gMeme = getCustomImg(id)
     getMeme()
     renderStickers()

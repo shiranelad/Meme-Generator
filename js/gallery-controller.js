@@ -21,15 +21,15 @@ function renderGallery(type) {
     var elGallery = document.querySelector('.gallery-container');
     var elCanvas = document.querySelector('.editor-container')
     var elControl = document.querySelector('.control-box')
-    var elAbout = document.querySelector('.about-container')
     elSearchBar.style.display = 'block';
     elGallery.style.display = 'block';
-    elAbout.style.display = 'flex'
     elCanvas.style.display = 'none';
     elControl.style.display = 'none'
+    displayAbout('flex')
     var strHTMLs;
     if (type === "myMemes") {
         strHTMLs = renderMyMemes()
+        displayAbout('none')
     }
     else {
         strHTMLs = gImgs.map(img => `<button class="btn-img" onclick="onImgSelect(${img.id})"><img class="card-img" src=${img.url}>
