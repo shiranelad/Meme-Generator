@@ -15,6 +15,8 @@
       <ul class="nav-bar active flex align-center justify-center clean-list main-layout">
         <li ><a href='#' class="gallery clean-a nav-link" onclick="renderGallery()">Gallery</a></li>
         <li><span class="separator">|</span></li>
+        <li ><a href='#' class="memes clean-a nav-link" clean-a nav-link" onclick="renderGallery('myMemes')">Memes</a></li>
+        <li><span class="separator">|</span></li>
         <li><a href='#' class="about clean-a nav-link">About</a></li>
       </ul>
     </header>
@@ -33,16 +35,36 @@
         <div class="control-box">
           <input class="text-line" type="text" name="text-line" placeholder="Enter text here" onkeyup="onChangeText()">
           
-          <button title="Add New Line" class="btn add-line" onclick="onAddLine()"><img src="assets/icons/add.png"></button> <!-- Add -->
-          <button title="Delete Line" class="btn del-line" onclick="onDelete()"><img src="assets/icons/trash.png"></button> <!-- Delete-->
-          <button title="Increase Font Size" class="btn increase-text" onclick="onIncrease()"><img src="assets/icons/increase font - icon.png"></button> <!-- Increase Text -->
-          <button title="Decrease Font Size" class="btn decrease-text" onclick="onDecrease()"><img src="assets/icons/decrease font - icon.png"></button> <!-- Decrease Text -->
-          <button title="Switch Line" class="btn switch-lines" onclick="onSwitchLine()"><img src="assets/icons/up-and-down-opposite-double-arrows-side-by-side.png"></button> <!-- Switch Lines -->
-          <button class="btn move-down" onclick="onMoveDown()"><img src="assets/icons/move-down.png"></button> <!-- Move Down -->
-          <button class="btn move-up" onclick="onMoveUp()"><img src="assets/icons/move-up.png"></button> <!-- Move Up -->
-          <button title="Align Left" class="btn align-left" onclick="onAlignText('left')"><img src="assets/icons/align-to-left.png"></button> <!-- Align Left -->
-          <button title="Align Center" class="btn align-center" onclick="onAlignText('center')"><img src="assets/icons/center-text-alignment.png"></button> <!-- Align Center -->
-          <button title="Align Right" class="btn align-right" onclick="onAlignText('right')"><img src="assets/icons/align-to-right.png"></button> <!-- Align Right -->
+          <button title="Add New Line" class="btn add-line" onclick="onAddLine()">
+            <img src="assets/icons/add.png">
+          </button> <!-- Add -->
+          <button title="Delete Line" class="btn del-line" onclick="onDelete()">
+            <img src="assets/icons/trash.png">
+          </button> <!-- Delete-->
+          <button title="Increase Font Size" class="btn increase-text" onclick="onIncrease()">
+            <img src="assets/icons/increase font - icon.png">
+          </button> <!-- Increase Text -->
+          <button title="Decrease Font Size" class="btn decrease-text" onclick="onDecrease()">
+            <img src="assets/icons/decrease font - icon.png">
+          </button> <!-- Decrease Text -->
+          <button title="Switch Line" class="btn switch-lines" onclick="onSwitchLine()">
+            <img src="assets/icons/up-and-down-opposite-double-arrows-side-by-side.png">
+          </button> <!-- Switch Lines -->
+          <button class="btn move-down" onclick="onMoveDown()">
+            <img src="assets/icons/move-down.png">
+          </button> <!-- Move Down -->
+          <button class="btn move-up" onclick="onMoveUp()">
+            <img src="assets/icons/move-up.png">
+          </button> <!-- Move Up -->
+          <button title="Align Left" class="btn align-left" onclick="onAlignText('left')">
+            <img src="assets/icons/align-to-left.png">
+          </button> <!-- Align Left -->
+          <button title="Align Center" class="btn align-center" onclick="onAlignText('center')">
+            <img src="assets/icons/center-text-alignment.png">
+          </button> <!-- Align Center -->
+          <button title="Align Right" class="btn align-right" onclick="onAlignText('right')">
+            <img src="assets/icons/align-to-right.png">
+          </button> <!-- Align Right -->
           <select class="btn choose-font" onchange="onChangeFont(this.value)">
             <option value="Impact">Impact</option>
             <option value="Arial">Arial</option>
@@ -51,36 +73,54 @@
             <option value="Consolas">Consolas</option>
           </select>
                     
-          <button title="Choose Font Color" class="btn btn-textcolor" onclick="clickColor('text')">
+          <button title="Choose Font Color" class="btn btn-textcolor" onclick="clickInput('text')">
             <img src="assets/icons/paint-board-and-brush.png">
             <input type="color" id="color" class="text-color"  value='#ffffff' onchange="onSetTextColor(this.value)"/>
           </button>
   
-          <button title="Choose Stroke Color" class="btn btn-strokecolor" onclick="clickColor('stroke')">
+          <button title="Choose Stroke Color" class="btn btn-strokecolor" onclick="clickInput('stroke')">
             <img src="assets/icons/text stroke.png">
             <input type="color" id="stroke" class="stroke-color" value='#000000' onchange="onSetStrokeColor(this.value)"/>
           </button>
-          <a href="#" class="export download" onclick="downloadMeme(this)" download="my-img.jpg"><button title="Download Meme" class="btn"><img src="assets/icons/download-solid.svg"></button></a>
-          <a href="#" class="export facebook" onclick="uploadImg()"><button title="Share to Facebook" class="btn"><img src="assets/icons/facebook-logo.png"></button></a>
-          <a href="#" class="export save" onclick="saveMeme()"><button title="Save Meme" class="btn"><img src="assets/icons/save_icon.png"></button></a>
+          <a href="#" class="download" onclick="downloadMeme(this)" download="my-img.jpg">
+            <button title="Download Meme" class="btn"><img src="assets/icons/download.png"></button>
+          </a>
+          <!-- <a href="#" class="upload" onclick="onImageInput(event)"> -->
+            
+
+            <button title="Upload Image" class="btn btn-upload" onclick="clickInput('upload')">
+              <img src="assets/icons/upload.png">
+              <input type="file" class="file-input btn" name="image" onchange="onImageInput(event)" />
+            </button>
+
+           
+          </a>
+          <a href="#" class="facebook" onclick="uploadImg('facebook')">
+            <button title="Share to Facebook" class="btn"><img src="assets/icons/facebook-logo.png"></button>
+          </a>
+          <a href="#" class="save" onclick="uploadImg()">
+            <button title="Save Meme" class="btn"><img src="assets/icons/save_icon.png"></button>
+          </a>
+          <svg class="icon check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path class="tick-path" d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"/></svg>
+
           <div class="stickers-container"></div>
           <div class="export-container">
             </div>
           </div>
         </div>
-      </div> 
     </div>
     <div class="about-modal">
     </div>
+    <!-- Footer -->
     <footer class="footer flex flex-column align-center justify-center">
       <img src="assets/logo.png" alt="" class="logo" />
       <small class="footer-text">&copy; Shiran Elad 2022</small>
     </footer>
-      <!-- Footer -->
+    <script src="js/storage-services.js"></script>
       <script src="js/meme-services.js"></script>
       <script src="js/meme-controller.js"></script>
       <script src="js/gallery-services.js"></script>
       <script src="js/gallery-controller.js"></script>
       <script src="js/upload-service.js"></script>
-    </body>
+  </body>
 </html>

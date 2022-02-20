@@ -52,3 +52,9 @@ function setInitialKeywordSize() {
     gKeywords['cats'] = 4
     gKeywords['baby'] = 10
 }
+
+function addToImgs(url){
+    var id = gImgs.length + 1
+    gImgs.push({id, url, keywords:'custom'})   
+    return id
+}

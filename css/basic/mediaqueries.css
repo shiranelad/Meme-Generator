@@ -40,7 +40,7 @@
     }
 
     .control-box {
-        width: auto;
+        width: 400px;
         margin: 1.625em;
     }
     
@@ -82,7 +82,7 @@
     }
 }
 
-@media (min-width: 708px) {
+@media (min-width: 860px) {
 
     .control-box {
         width: 30%;
@@ -113,6 +113,7 @@
     .editor-container {
         flex-direction: row;
         align-items: center;
+        justify-content: center;
     }
 }
 

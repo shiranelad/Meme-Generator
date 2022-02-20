@@ -80,7 +80,11 @@ function drawImg(img) {
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height)
         drawText();
+        drawRect()
     }
+}
+function drawImgLoaded(img) {
+        gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height)
 }
 
 function onChangeText() {
@@ -181,10 +185,8 @@ function onDown(ev) {
         return
     }
     gCtx.font = `${line.size}px ${line.font}`
-    // if (line === getSelectedLine()){
-    //     var { left, top, width, height } = checkBounds(line)
-    //     drawRect(left, top, width, height)
-    // }
+    setSelectedLine(line)
+    renderMeme()
     setTextDrag(true)
     gStartPos = pos
     document.body.style.cursor = 'grabbing'
@@ -220,7 +222,6 @@ function onAlignText(align) {
         gCurrX = gCanvas.clientWidth / 2
     }
     line.align = align
-    var width = gCtx.measureText(line.txt).width
     switch (align) {
         case 'left':
             line.pos.x = 10
@@ -259,7 +260,7 @@ function getEvPos(ev) {
 
 
 function drawRect() {
-    if (getSelectedLine() === null) return
+    if (getSelectedLine() === undefined) return
     const { left, top, width, height } = checkBounds(getSelectedLine())
     gCtx.beginPath();
     gCtx.rect(left, top, width, height);
@@ -269,6 +270,7 @@ function drawRect() {
 }
 
 function checkBounds(line) {
+    if(!line) return
     const metrics = gCtx.measureText(line.txt)
     const width = metrics.width
     const height = Math.abs(metrics.actualBoundingBoxAscent) +
@@ -289,7 +291,7 @@ function onSwitchLine() {
     switchLine();
     document.querySelector('input[name="text-line"]').value = getSelectedLine().txt;
     getLineValues(getSelectedLine())
-    // drawRect()
+    renderMeme()
 
 }
 
@@ -320,9 +322,44 @@ function downloadMeme(elLink) {
     elLink.href = imgContent
 }
 
-function clickColor(el) {
-    if (el === 'text')
+function clickInput(type) {
+    console.log(type)
+    if (type === 'text')
         document.querySelector('.text-color').click();
-    else
+    else if (type === 'stroke')
         document.querySelector('.stroke-color').click();
+    else 
+        document.querySelector('.file-input').click();
+}
+
+function onImageInput(ev) {
+    loadImageFromInput(ev, drawImgLoaded)
+}
+
+function clearCanvas(){
+    gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
+}
+
+function onChooseCustomImage(id){
+
+    document.querySelector('input[name="text-line"]').value = '';
+    var elSearchBar = document.querySelector('.search-bar')
+    var elGallery = document.querySelector('.gallery-container')
+    var elCanvas = document.querySelector('.editor-container')
+    var elControl = document.querySelector('.control-box')
+    elCanvas.style.display = 'flex';
+    resizeCanvas();
+    elControl.style.display = 'grid';
+    elSearchBar.style.display = 'none';
+    elGallery.style.display = 'none';
+    gMeme = getCustomImg(id)
+    getMeme()
+    renderStickers()
+    renderMeme()
+}
+
+function displaySaveTick(){
+    var elTick = document.querySelector('.check')
+    elTick.classList.add('saved')
+    setTimeout(() => elTick.classList.remove('saved'), 2000)
 }

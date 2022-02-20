@@ -1,6 +1,7 @@
 'use strict'
 
 var gMeme;
+const STORAGE_KEY = 'memesDB';
 
 function setImg(id) {
     var meme = {
@@ -63,6 +64,10 @@ function createLine(x, y) {
 function getSelectedLine() {
     return gMeme.lines[gMeme.selectedLineIdx]
 }
+function setSelectedLine(line) {
+    var idx = gMeme.lines.indexOf(line)
+    gMeme.selectedLineIdx = idx
+}
 
 function getLineByIdx(idx) {
     return gMeme.lines[idx]
@@ -77,6 +82,15 @@ function findCellClicked(pos) {
     gMeme.selectedLineIdx = idx
     var line = gMeme.lines[idx]
     return line
+}
+
+function saveMemeToStorage(url){
+    gMeme['url'] = url
+    var memes = loadFromStorage(STORAGE_KEY)
+    if (!memes || memes.length === 0) memes = []
+    memes.push(gMeme)
+    saveToStorage(STORAGE_KEY, memes)
+    displaySaveTick()
 }
 
 function setTextDrag(isDrag) {
@@ -185,4 +199,9 @@ function updateLinesPos(){
         onAlignText(align) //switch back to original align
         gMeme.selectedLineIdx = origSelected //swtich back to original selected line
     }
+}
+
+function getCustomImg(id){
+    gMeme = loadFromStorage('memesDB')[id]
+    return gMeme
 }

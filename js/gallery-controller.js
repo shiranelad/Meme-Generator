@@ -16,7 +16,7 @@ function onSetFilter() {
 }
 
 
-function renderGallery() {
+function renderGallery(type) {
     var elSearchBar = document.querySelector('.search-bar');
     var elGallery = document.querySelector('.gallery-container');
     var elCanvas = document.querySelector('.editor-container')
@@ -25,8 +25,14 @@ function renderGallery() {
     elGallery.style.display = 'block';
     elCanvas.style.display = 'none';
     elControl.style.display = 'none'
-    var strHTMLs = gImgs.map(img => `<button class="btn-img" onclick="onImgSelect(${img.id})"><img class="card-img" src=${img.url}>
+    var strHTMLs;
+    if (type === "myMemes") {
+        strHTMLs = renderMyMemes()
+    }
+    else {
+        strHTMLs = gImgs.map(img => `<button class="btn-img" onclick="onImgSelect(${img.id})"><img class="card-img" src=${img.url}>
     </img></button>`)
+    }
     elGallery.innerHTML = strHTMLs.join('');
 
     renderCategories();
@@ -37,15 +43,24 @@ function renderCategories() {
     var keywordsArr = []
     var elDataList = document.querySelector('#categories')
     gImgs.map(img => img.keywords.map(keyword => {
-        if(keywordsArr.indexOf(keyword) < 0){
+        if (keywordsArr.indexOf(keyword) < 0) {
             keywordsArr.push(keyword)
         }
     })
     )
-    var strHtmls = keywordsArr.map(keyword => 
-         `<option value=${keyword.charAt(0).toUpperCase() + keyword.slice(1,keyword.length)}>`)
-    
+    var strHtmls = keywordsArr.map(keyword =>
+        `<option value=${keyword.charAt(0).toUpperCase() + keyword.slice(1, keyword.length)}>`)
+
     elDataList.innerHTML = strHtmls.join('')
+}
+
+
+function renderMyMemes() {
+    var memes = loadFromStorage(STORAGE_KEY)
+    console.log(memes)
+    var strHTMLs = memes.map((img,idx) => `<button class="btn-img" onclick="onChooseCustomImage(${idx})"><img class="card-img" src=${img.url}>
+    </img></button>`)
+    return strHTMLs
 }
 
 
