@@ -21,8 +21,10 @@ function renderGallery(type) {
     var elGallery = document.querySelector('.gallery-container');
     var elCanvas = document.querySelector('.editor-container')
     var elControl = document.querySelector('.control-box')
+    var elAbout = document.querySelector('.about-container')
     elSearchBar.style.display = 'block';
     elGallery.style.display = 'block';
+    elAbout.style.display = 'flex'
     elCanvas.style.display = 'none';
     elControl.style.display = 'none'
     var strHTMLs;

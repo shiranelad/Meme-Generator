@@ -17,7 +17,7 @@
         <li><span class="separator">|</span></li>
         <li ><a href='#' class="memes clean-a nav-link" clean-a nav-link" onclick="renderGallery('myMemes')">Memes</a></li>
         <li><span class="separator">|</span></li>
-        <li><a href='#' class="about clean-a nav-link">About</a></li>
+        <li><a href='#about' onclick="displayAbout()" class="about clean-a nav-link">About</a></li>
       </ul>
     </header>
 
@@ -85,16 +85,10 @@
           <a href="#" class="download" onclick="downloadMeme(this)" download="my-img.jpg">
             <button title="Download Meme" class="btn"><img src="assets/icons/download.png"></button>
           </a>
-          <!-- <a href="#" class="upload" onclick="onImageInput(event)"> -->
-            
-
             <button title="Upload Image" class="btn btn-upload" onclick="clickInput('upload')">
               <img src="assets/icons/upload.png">
               <input type="file" class="file-input btn" name="image" onchange="onImageInput(event)" />
-            </button>
-
-           
-          </a>
+            </button>          
           <a href="#" class="facebook" onclick="uploadImg('facebook')">
             <button title="Share to Facebook" class="btn"><img src="assets/icons/facebook-logo.png"></button>
           </a>
@@ -109,7 +103,19 @@
           </div>
         </div>
     </div>
-    <div class="about-modal">
+    <div class="about-container flex" id="about">
+        <img src="assets/profile.jpg" class="profile-pic" alt="Profile Image" title="This is a title">
+        <div class="about-desc">
+          <h3>Shiran Elad</h3>
+          <p>I am a full stack developer who is passionate about programming and creating new and cool stuff!<br>
+            Check me out on social media: </p>
+            <div class="social-container">
+            <a class="clean-a" target="_blank" href="https://www.facebook.com/shiran.elad"><img class="fb-icon social" src="assets/icons/facebook-logo.png" alt=""></a>
+            <a class="clean-a" target="_blank" href="https://github.com/shiranelad"><img class="gth-icon social" src="assets/icons/github-logo.png" alt=""></a>
+            <a class="clean-a" target="_blank" href="https://www.linkedin.com/in/shiran-elad"><img class="li-icon social" src="assets/icons/linkedin-logo.png" alt=""></a>
+            
+            </div>
+        </div>
     </div>
     <!-- Footer -->
     <footer class="footer flex flex-column align-center justify-center">

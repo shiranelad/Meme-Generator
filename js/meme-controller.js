@@ -33,15 +33,23 @@ function onImgSelect(id) {
     var elGallery = document.querySelector('.gallery-container')
     var elCanvas = document.querySelector('.editor-container')
     var elControl = document.querySelector('.control-box')
+    var elAbout = document.querySelector('.about-container')
     elCanvas.style.display = 'flex';
     resizeCanvas();
     elControl.style.display = 'grid';
     elSearchBar.style.display = 'none';
     elGallery.style.display = 'none';
+    elAbout.style.display = 'none';
     gMeme = setImg(id)
     getMeme()
     renderStickers()
     renderMeme()
+}
+
+function displayAbout(){
+    var elAbout = document.querySelector('.about-container');
+    elAbout.style.display = 'flex';
+
 }
 
 function renderMeme() {
