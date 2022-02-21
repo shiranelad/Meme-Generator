@@ -269,6 +269,8 @@ function getEvPos(ev) {
 
 function drawRect() {
     if (getSelectedLine() === undefined) return
+    gCtx.font = `${getSelectedLine().size}px ${getSelectedLine().font}`
+    renderMeme()
     const { left, top, width, height } = checkBounds(getSelectedLine())
     gCtx.beginPath();
     gCtx.rect(left, top, width, height);
