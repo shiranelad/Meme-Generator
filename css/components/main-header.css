@@ -10,11 +10,11 @@
 
 }
 
-/* .main-header .nav-bar {
+.main-header .nav-bar {
     color: var(--clr2);
     font-family: 'Mont 400';
-    font-size: 1.5rem;
-} */
+    font-size: 0.9rem;
+}
 
 
 .main-header .nav-bar > * :not(.separator):hover {
